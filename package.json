@@ -1,0 +1,35 @@
+{
+  "name": "billing-sw-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Princeray-18/Billing-Software.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Princeray-18/Billing-Software/issues"
+  },
+  "homepage": "https://github.com/Princeray-18/Billing-Software#readme",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "3.0.2",
+    "bcrypt": "^5.1.0",
+    "author": "^2.3.1",
+    "keywords": "^0.16.0",
+    "license": "^1.1.0",
+    "type": "^1.2.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "cors": "2.8.5",
+    "mongoose": "^8.18.1",
+    "nodemon": "^3.1.10"
+  }
+}
