@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 const startServer = async () => {
   try {
     await connectDB();
-    const PORT = process.env.PORT || 5000;  // ✅ use uppercase PORT
+    const PORT = process.env.PORT || 5000;  
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
     });
@@ -25,3 +25,6 @@ const startServer = async () => {
 };
 
 startServer();
+
+
+
