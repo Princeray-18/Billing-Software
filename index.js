@@ -4,13 +4,15 @@ const express = require('express');
 const connectDB = require('./CONFIG/db');
 const app = express();
 
+const customerRouter=require("./routes/customer.routes")
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+dotenv.config();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Server is running 🚀');
-});
+app.use
 
+app.use("/api/v1/customer",customerRouter)
 const startServer = async () => {
   try {
     await connectDB();

@@ -3,8 +3,7 @@ const { Schema } = mongoose;
 
 const customerSchema = new Schema({
     name: { type: String, required: true },
-    adress: { type: String, required: true, unique: true },
-    age:{type:String,required:true,unique:true},},
+    Number:{type:String,required:true,unique:true},},
 
     
     {timestamps: true}

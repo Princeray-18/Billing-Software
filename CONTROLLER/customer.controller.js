@@ -1,13 +1,15 @@
 // controllers/customerController.js
-const Customer = require('../models/Customer');
+
+const customerModel = require("../MODELS/customer.model");
 
 // Add Customer
 const addCustomer = async (req, res) => {
     try {
-        const { name, adress, age } = req.body;
+        console.log (req.body)
+        const { name, Number } = req.body;
 
-        const customer = await Customer.create({ name, adress, age });
-        res.status(201).json({ message: "Customer added successfully", customer });
+        const customer = await customerModel.create({ name, Number });
+        res.status(200).json({ message: "Customer added successfully", customer });
 
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -17,7 +19,7 @@ const addCustomer = async (req, res) => {
 // Get All Customers
 const getAllCustomers = async (req, res) => {
     try {
-        const customers = await Customer.find();
+        const customers = await customerModel.find();
         res.status(200).json({ message: "All customers", customers });
 
     } catch (error) {
@@ -29,11 +31,11 @@ const getAllCustomers = async (req, res) => {
 const updateCustomer = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, adress, age } = req.body;
+        const { name,  Number } = req.body;
 
-        const customer = await Customer.findByIdAndUpdate(
+        const customer = await customerModel.findByIdAndUpdate(
             id,
-            { name, adress, age },
+            { name,Name },
             { new: true, runValidators: true }
         );
 
@@ -53,7 +55,7 @@ const deleteCustomer = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const customer = await Customer.findByIdAndDelete(id);
+        const customer = await customerModel.findByIdAndDelete(id);
 
         if (!customer) {
             return res.status(404).json({ message: "Customer not found" });

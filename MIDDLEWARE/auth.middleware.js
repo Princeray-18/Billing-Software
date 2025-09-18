@@ -1,20 +1,18 @@
-const jwt =require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-const auth=(req,res,next)=>{
-    try {
-        const token=req.header('Authorization')?.replace('Bearer ','');
-        if(!token){
-            return res.status(401).json({message:'No token, authorization denied'});
-        }
-        const verifyUser=jwt.verify(token,process.env.JWT_SECRET);
-        req.user=verifyUser;
-        next();
-    } catch(error){
-        res.status(401).json({message:'Unauthorized '});
+const auth = (req, res, next) => {
+  try {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) {
+      return res.status(401).json({ message: 'No token, authorization denied' });
     }
+
+    const verifyUser = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = verifyUser;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Unauthorized' });
+  }
 };
-module.exports=auth;
 
-
-
-
+module.exports = auth;
