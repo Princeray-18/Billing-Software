@@ -35,7 +35,7 @@ const updateCustomer = async (req, res) => {
 
         const customer = await customerModel.findByIdAndUpdate(
             id,
-            { name,Name },
+            { name,Number },
             { new: true, runValidators: true }
         );
 

@@ -4,7 +4,7 @@ const express = require('express');
 const connectDB = require('./CONFIG/db');
 const app = express();
 
-const customerRouter=require("./routes/customer.routes")
+const customerRouter=require('./ROUTES/customer.routes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 dotenv.config();

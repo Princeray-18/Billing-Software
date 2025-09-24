@@ -10,9 +10,9 @@ const{
 }=require("../CONTROLLER/product.controller")
 
 const router=express.Router();
-router.post('/addproduct',auth,addProduct);
-router.get('/allproducts',auth,getAllProducts);
-router.put('/updateproduct/:id',auth,updateProduct);
-router.delete('/deleteproduct/:id',auth,deleteProduct);
+router.post('/addproduct',addProduct);
+router.get('/allproducts',getAllProducts);
+router.put('/updateproduct/:id',updateProduct);
+router.delete('/deleteproduct/:id',deleteProduct);
 module.exports=router;
 
