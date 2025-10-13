@@ -1,5 +1,5 @@
 
-
+const productmodel = require("../MODELS/product.model");
 
 const addProduct = async(req, res) => {
     try {   
@@ -7,7 +7,7 @@ const addProduct = async(req, res) => {
 
         //constbarcode=generateBaecode();
 
-        const product =newproductmodel.create({productname,price,stock});
+        const product =productmodel.create({productname,price,stock});
         res.status(201).json({ message: "Product added successfully", product });
         
     } catch (error) {

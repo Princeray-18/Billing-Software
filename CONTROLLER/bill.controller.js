@@ -1,28 +1,29 @@
 // controllers/bill.controller.js
-const Bill = require('../models/Bill');
+const Bill = require('../MODELS/bill.model');
+const customerModel = require('../MODELS/customer.model');
 
 // Add Bill
 const addBill = async (req, res) => {
     try {
         const { customerid, producs, discount, totalamount } = req.body;
-
-        const bill = await Bill.create({ customerid, producs, discount, totalamount });
-        res.status(201).json({ message: "Bill created successfully", bill });
-
+        const exitngCustomer = await customerModel.findById(customerid);
+        if(!exitngCustomer){
+        }
+if(discount){
+    totalamount = producs.price - discount;
+}
+const bill = await Bill.create({ customerid, producs, discount, totalamount });
+res.status(201).json({ message: "Bill created successfully", bill });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}
 
 // Get All Bills (with customer & product populated)
 const getAllBills = async (req, res) => {
     try {
-        const bills = await Bill.find()
-            .populate('customerid', 'name adress age')   // populate customer fields
-            .populate('producs', 'productname price stock'); // populate product fields
-
+        const allbills = await Bill.find()
         res.status(200).json({ message: "All bills", bills });
-
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -48,30 +49,6 @@ const getBillById = async (req, res) => {
     }
 };
 
-// Update Bill
-const updateBill = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { customerid, producs, discount, totalamount } = req.body;
-
-        const bill = await Bill.findByIdAndUpdate(
-            id,
-            { customerid, producs, discount, totalamount },
-            { new: true, runValidators: true }
-        ).populate('customerid', 'name adress age')
-         .populate('producs', 'productname price stock');
-
-        if (!bill) {
-            return res.status(404).json({ message: "Bill not found" });
-        }
-
-        res.status(200).json({ message: "Bill updated successfully", bill });
-
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
 // Delete Bill
 const deleteBill = async (req, res) => {
     try {
@@ -90,4 +67,4 @@ const deleteBill = async (req, res) => {
     }
 };
 
-module.exports = { addBill, getAllBills, getBillById, updateBill, deleteBill };
+module.exports = { addBill, getAllBills, getBillById, deleteBill };

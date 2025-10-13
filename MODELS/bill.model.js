@@ -8,11 +8,11 @@ const billSchema = new Schema({
         ref: 'Customer',
         required: true
     },
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-    },
+    product: [{
+        productid: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        quantity: { type: Number, required: true },
+        price: { type: Number, required: true }
+    }],
     discount: { type: Number, default: 0 },
     totalamount: { type: Number, required: true },
 },

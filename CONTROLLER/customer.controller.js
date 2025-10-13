@@ -1,20 +1,31 @@
-// controllers/customerController.js
-
-const customerModel = require("../MODELS/customer.model");
-
 // Add Customer
+const customerModel = require('../MODELS/customer.model');
 const addCustomer = async (req, res) => {
     try {
-        console.log (req.body)
         const { name, Number } = req.body;
 
-        const customer = await customerModel.create({ name, Number });
-        res.status(200).json({ message: "Customer added successfully", customer });
+        // validate
+        if (!name || !Number) {
+            return res.status(400).json({ message: "Name and Number are required" });
+        }
+
+        const newCustomer = new customerModel({
+            name,
+            Number
+        });
+
+        await newCustomer.save();
+
+        res.status(201).json({ 
+            message: "Customer added successfully", 
+            customer: newCustomer 
+        });
 
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // Get All Customers
 const getAllCustomers = async (req, res) => {
